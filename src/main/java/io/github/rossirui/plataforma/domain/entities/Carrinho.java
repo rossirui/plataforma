@@ -1,11 +1,15 @@
 package io.github.rossirui.plataforma.domain.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Carrinho {
 
     @Id
