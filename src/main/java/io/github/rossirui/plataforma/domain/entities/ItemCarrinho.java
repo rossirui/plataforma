@@ -1,28 +1,37 @@
 package io.github.rossirui.plataforma.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import java.io.Serializable;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemCarrinho {
+@Entity
+public class ItemCarrinho implements Serializable {
+    private static final long serialVeresionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @JsonIgnore
+    @EmbeddedId
+    private ItemCarrinhoPK id = new ItemCarrinhoPK();
 
-    @Column
     private int quantidade;
-
-    @Column
     private double desconto;
-
-    @Column
     private double valor;
+
+
+    @JsonIgnore
+    public Carrinho getCarrinho() {
+        return id.getCarrinho();
+    }
+
+    public Produto getProduto() {
+        return id.getProduto();
+    }
 
 }
