@@ -1,6 +1,8 @@
 package io.github.rossirui.plataforma.domain.services;
 
+import io.github.rossirui.plataforma.domain.entities.Carrinho;
 import io.github.rossirui.plataforma.domain.entities.ItemCarrinho;
+import io.github.rossirui.plataforma.domain.repositories.CarrinhoRepository;
 import io.github.rossirui.plataforma.domain.repositories.ItemCarrinhoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,9 @@ public class ItemCarrinhoService {
 
     @Autowired
     private ItemCarrinhoRepository itemCarrinhoRepository;
+
+    @Autowired
+    private CarrinhoRepository carrinhoRepository;
 
     public ItemCarrinho buscarPorId(Integer id) {
         return itemCarrinhoRepository
@@ -39,7 +44,20 @@ public class ItemCarrinhoService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    public void atualizar(ItemCarrinho itemCarrinho) {
+    public void atualizar(ItemCarrinho itemCarrinhoAtualizado, Integer id) {
+        ItemCarrinho itemCarrinho = buscarPorId(id);
+        double valorProduto = itemCarrinho.getProduto().getValor();
 
+        int quantidade = itemCarrinhoAtualizado.getQuantidade();
+
+        itemCarrinho.setQuantidade(quantidade);
+
+        itemCarrinho.setValor(quantidade * valorProduto);
+
+        if(quantidade >= 10) {
+            itemCarrinho.setDesconto(0.1 * itemCarrinho.getValor());
+        }
+
+        itemCarrinhoRepository.save(itemCarrinho);
     }
 }

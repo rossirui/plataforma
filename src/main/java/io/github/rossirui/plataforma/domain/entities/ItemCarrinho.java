@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data
@@ -20,8 +21,12 @@ public class ItemCarrinho implements Serializable {
     @EmbeddedId
     private ItemCarrinhoPK id = new ItemCarrinhoPK();
 
+    @NotNull(message = "Campo obrigatório")
     private int quantidade;
+
     private double desconto;
+
+    @NotNull(message = "Campo obrigatório")
     private double valor;
 
 

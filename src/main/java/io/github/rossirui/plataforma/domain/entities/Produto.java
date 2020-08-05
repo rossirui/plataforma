@@ -26,15 +26,15 @@ public class Produto implements Serializable {
     private Integer id;
 
     @Column(nullable = false, length = 80)
-    @NotEmpty
+    @NotEmpty(message = "Campo obrigatório")
     private String nome;
 
     @Column(nullable = false, length = 150)
-    @NotEmpty
+    @NotEmpty(message = "Campo obrigatório")
     private String descricao;
 
     @Column(nullable = false)
-    @NotNull
+    @NotNull(message = "Campo obrigatório")
     private double valor;
 
     private ItemCarrinho itemCarrinho;

@@ -21,11 +21,11 @@ public class Cupom implements Serializable {
     private Integer id;
 
     @Column(nullable = false)
-    @NotEmpty
+    @NotEmpty(message = "Campo obrigatório")
     private String nome;
 
     @Column(nullable = false)
-    @NotNull
+    @NotNull(message = "Campo obrigatório")
     private double valor;
 
 }

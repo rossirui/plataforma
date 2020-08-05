@@ -26,15 +26,15 @@ public class Carrinho implements Serializable {
     private Integer id;
 
     @Column
-    @NotNull
+    @NotNull(message = "Campo obrigatório")
     private double deconto;
 
     @Column
-    @NotNull
+    @NotNull(message = "Campo obrigatório")
     private double valor;
 
     @Column(updatable = false)
-    @NotNull
+    @NotNull(message = "Campo obrigatório")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate data;
 

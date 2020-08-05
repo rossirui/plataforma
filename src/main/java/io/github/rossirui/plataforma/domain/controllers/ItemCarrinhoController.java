@@ -43,6 +43,12 @@ public class ItemCarrinhoController {
         return itemCarrinhoService.salvar(itemCarrinho);
     }
 
+    @PutMapping("/carrinho/{carrinho_id}/produto/{produto_id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void atualizar(@RequestBody ItemCarrinho itemCarrinho, @PathVariable Integer id) {
+        itemCarrinhoService.atualizar(itemCarrinho, id);
+    }
+
     @GetMapping
     public List<ItemCarrinho> buscar() {
         return itemCarrinhoService.buscar();
