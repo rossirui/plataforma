@@ -30,8 +30,16 @@ public class ItemCarrinho implements Serializable {
         return id.getCarrinho();
     }
 
+    public void setCarrinho(Carrinho carrinho) {
+        this.id.setCarrinho(carrinho);
+    }
+
     public Produto getProduto() {
         return id.getProduto();
+    }
+
+    public void setProduto(Produto produto) {
+        this.id.setProduto(produto);
     }
 
 }

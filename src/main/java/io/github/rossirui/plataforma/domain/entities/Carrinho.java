@@ -9,7 +9,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -31,10 +33,13 @@ public class Carrinho implements Serializable {
     @NotNull
     private double valor;
 
-    @Column
+    @Column(updatable = false)
     @NotNull
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate data;
+
+    @OneToMany
+    private List<Cupom> cupons = new ArrayList<>();
 
     @OneToMany(mappedBy = "id.carrinho")
     private Set<ItemCarrinho> itensCarrinho = new HashSet<>();

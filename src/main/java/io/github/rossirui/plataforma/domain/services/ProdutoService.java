@@ -28,4 +28,15 @@ public class ProdutoService {
     public Produto salvar(Produto produto) {
         return produtoRepository.save(produto);
     }
+
+    public void atualizar(Produto produto, Integer id) {
+        buscarPorId(id);
+        produto.setId(id);
+        produtoRepository.save(produto);
+    }
+
+    public void deletar(Integer id) {
+        buscarPorId(id);
+        produtoRepository.deleteById(id);
+    }
 }
